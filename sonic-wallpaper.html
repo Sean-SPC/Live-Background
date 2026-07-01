@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Music Player</title>
+    <script>
+        var imgSrc = "sonic.jpg";
+        var currentSong_Index = 0;
+        
+        // Hardcode your song names here (since browsers block direct file reading)
+        var playList = [
+            "The Britons",
+            "Mesmerizing Galaxy Loop",
+            "Dentaneosuchus Hunt"
+        ];
+
+        // Adding '.mp3' to Each Song
+        for (var i = 0; i < playList.length; i++) { playList[i] += ".mp3"; }
+
+        // Fisher-Yates Shuffle Algorithm
+        shuffle(playList);
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    
+        // On-Page Load
+        window.addEventListener('load', () => { 
+            document.getElementById("bg-image").src = imgSrc;
+
+            var songSrc = playList[currentSong_Index];
+            document.getElementById("bg-music").src = "music/" + songSrc;
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Audio Paused
+            const audio = document.getElementById("bg-music");
+            audio.addEventListener('pause', () => {
+                console.log("Music paused!");
+            });
+            
+            // Automatically Play Next Song
+            audio.addEventListener('ended', () => {
+                if (currentSong_Index < playList.length) { currentSong_Index++; }
+                else { currentSong_Index = 0; }
+
+                audio.src = "music/" + playList[currentSong_Index];
+                audio.play();
+            });
+        });
+    </script>
+</head>
+<body>
+    <img id="bg-image" alt="Background" style="width: 300px; height: auto;" />
+    <audio id="bg-music" controls autoplay></audio>
+</body>
+</html>
