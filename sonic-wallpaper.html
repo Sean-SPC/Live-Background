@@ -7,15 +7,20 @@
         var imgSrc = "sonic.jpg";
         var currentSong_Index = 0;
         
-        // Hardcode your song names here (since browsers block direct file reading)
         var playList = [
             "The Britons",
             "Mesmerizing Galaxy Loop",
             "Dentaneosuchus Hunt"
         ];
 
+        // Audio Variables
+        var fadeInTime = 5, fadeOutTime = 5;
+        var songInterval = 4;
+
         // Adding '.mp3' to Each Song
-        for (var i = 0; i < playList.length; i++) { playList[i] += ".mp3"; }
+        for (var i = 0; i < playList.length; i++) { 
+            playList[i] += ".mp3"; 
+        }
 
         // Fisher-Yates Shuffle Algorithm
         shuffle(playList);
@@ -25,7 +30,7 @@
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
-    
+
         // On-Page Load
         window.addEventListener('load', () => { 
             document.getElementById("bg-image").src = imgSrc;
@@ -34,22 +39,78 @@
             document.getElementById("bg-music").src = "music/" + songSrc;
         });
 
+        // On-Run Logic
         window.addEventListener('DOMContentLoaded', () => {
-            // Audio Paused
             const audio = document.getElementById("bg-music");
+
+            // Audio Paused Listener
             audio.addEventListener('pause', () => {
                 console.log("Music paused!");
             });
             
-            // Automatically Play Next Song
-            audio.addEventListener('ended', () => {
-                if (currentSong_Index < playList.length) { currentSong_Index++; }
-                else { currentSong_Index = 0; }
-
-                audio.src = "music/" + playList[currentSong_Index];
-                audio.play();
+            // Fade-In Listener
+            audio.addEventListener('play', () => {
+                fadeIn(audio, fadeInTime * 1000);
+            });
+            
+            // Fade-Out Listener
+            audio.addEventListener('timeupdate', () => {
+                let timeRemaining = audio.duration - audio.currentTime;
+                
+                if (timeRemaining <= fadeOutTime && !audio.dataset.fadingOut) {
+                    audio.dataset.fadingOut = "true"; // Flag set
+                    
+                    // We use a callback or chain to run AutoSong *after* fading completes
+                    fadeOut(audio, fadeOutTime * 1000, () => { AutoNextSong(audio); });
+                }
             });
         });
+
+        // Automatically Play Next Song
+        function AutoNextSong(audioElement) {
+            setTimeout(() => {
+                if (currentSong_Index < playList.length - 1) { currentSong_Index++; }
+                else { currentSong_Index = 0; }
+    
+                audioElement.src = "music/" + playList[currentSong_Index];
+                audioElement.dataset.fadingOut = "";
+                audioElement.play();
+            }, songInterval * 1000);
+        }
+
+        // Fade-In Handler
+        function fadeIn(audioElement, duration) {
+            audioElement.volume = 0;
+            
+            let interval = 50;
+            let step = interval / duration;
+            
+            let fade = setInterval(() => {
+                if (audioElement.volume + step >= 1) {
+                    audioElement.volume = 1;
+                    clearInterval(fade);
+                } 
+                else { audioElement.volume += step; }
+            }, interval);
+        }
+
+        // Fade-Out Handler
+        function fadeOut(audioElement, duration = 2000, onComplete) {
+            let interval = 50;
+            let step = interval / duration;
+            
+            let fade = setInterval(() => {
+                if (audioElement.volume - step <= 0) {
+                    audioElement.volume = 0;
+                    audioElement.pause();
+        
+                    clearInterval(fade);
+
+                    onComplete();
+                }
+                else { audioElement.volume -= step; }
+            }, interval);
+        }
     </script>
 </head>
 <body>
