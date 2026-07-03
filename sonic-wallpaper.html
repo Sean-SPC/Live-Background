@@ -5,24 +5,27 @@
     <title>Live Wallpaper</title>
     <script>
         var imgSrc = "sonic.jpg";
-        var videoSrc = "sonic-in-flowers.mp4";
+        var videoSrc = "sonic-frontiers.mp4";
         var currentSong_Index = 0;
         
+        // try 
+        // {
+        //     var playList = fetch("song-names.json").then(response => response.json()).then(data => data["song-names"]);
+        // } 
+        // catch (error)
+        // {
+        //     console.log(error);
+        // }
+        
         var playList = [
-            "kronos-island-mvt1",
-            "kronos-island-mvt2",
-            "kronos-island-mvt3",
-            "kronos-island-mvt4"
+            "comfort-zone-[RAW].mp4",
+            "live-and-learn-[RAW].mp4",
+            "sea-bottom-segue-[RAW].mp4",
+            "apotos-[RAW].mp4"
         ];
 
-        // Audio Variables
         var fadeInTime = 5, fadeOutTime = 5;
         var fadeInterval = 20, songInterval = 3;
-
-        // Adding '.mp3' to Each Song
-        for (var i = 0; i < playList.length; i++) { 
-            playList[i] += ".mp3"; 
-        }
 
         // Fisher-Yates Shuffle Algorithm
         shuffle(playList);
@@ -36,10 +39,10 @@
         // On-Page Load
         window.addEventListener('load', () => { 
             // document.getElementById("bg-image").src = imgSrc;
-            document.getElementById("bg-video").src = videoSrc;
+            document.getElementById("bg-video").src = `media/${videoSrc}`;
 
-            var songSrc = playList[currentSong_Index];
-            document.getElementById("bg-music").src = "music/" + songSrc;
+            var audioSrc = playList[currentSong_Index];
+            document.getElementById("bg-music").src = `music/${audioSrc}`;
         });
 
         // On-Run Logic
@@ -135,6 +138,6 @@
 <body>
     <!-- <img id="bg-image" class="bg-media" alt="background image"/> -->
     <video id="bg-video" class="bg-media" alt="background video" autoplay loop></video>
-    <audio id="bg-music" autoplay></audio>
+    <audio id="bg-music" autoplay controls></audio>
 </body>
 </html>

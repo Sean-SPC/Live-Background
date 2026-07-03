@@ -1,0 +1,14 @@
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\bin\Debug\net10.0\Directory-to-JSON.exe
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\bin\Debug\net10.0\Directory-to-JSON.deps.json
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\bin\Debug\net10.0\Directory-to-JSON.runtimeconfig.json
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\bin\Debug\net10.0\Directory-to-JSON.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\bin\Debug\net10.0\Directory-to-JSON.pdb
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.AssemblyInfoInputs.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.AssemblyInfo.cs
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.csproj.CoreCompileInputs.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\refint\Directory-to-JSON.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.pdb
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\Directory-to-JSON.genruntimeconfig.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Directory-to-JSON\obj\Debug\net10.0\ref\Directory-to-JSON.dll
